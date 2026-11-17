@@ -46,6 +46,18 @@ int main() {
 	weaponBulletCounts.erase(WeaponId::Handgun);
 	std::cout << "Drop Handgun\n";
 
+	// Mini exercise: register and fire the RocketLauncher.
+	weaponBulletCounts[WeaponId::RocketLauncher] = 5;
+	std::cout << "Pick up RocketLauncher: "
+		<< weaponBulletCounts[WeaponId::RocketLauncher] << " bullets\n";
+
+	itWeapon = weaponBulletCounts.find(WeaponId::RocketLauncher);
+	if (itWeapon != weaponBulletCounts.end() && itWeapon->second > 0) {
+		--itWeapon->second;
+		std::cout << "Fire RocketLauncher: " << itWeapon->second
+			<< " bullets left\n";
+	}
+
 	// A range-based for loop lists owned weapons and their bullet counts.
 	for (const auto& entry : weaponBulletCounts) {
 		std::cout << static_cast<int>(entry.first) << ": "
